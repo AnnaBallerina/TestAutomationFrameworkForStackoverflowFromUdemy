@@ -9,9 +9,19 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    junitJupiterVersion = '5.7.1'
+    seleniumJupiterVersion = '3.4.0'
+    cucumberVersion = '6.10.0'
+}
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    // jupiter
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+    testImplementation "io.github.bonigarcia:selenium-jupiter:$seleniumJupiterVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+    // cucumber
+    testImplementation "io.cucumber:cucumber-java:$cucumberVersion"
+    testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
 }
 
 test {
