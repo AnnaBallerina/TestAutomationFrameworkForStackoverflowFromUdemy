@@ -1,11 +1,29 @@
 package steps;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
 
 public class Login {
+
+    private WebDriver driver;
+
+    @Before
+    public void setup(){
+        WebDriverManager.chromedriver().setup();
+        this.driver = new ChromeDriver();
+        this.driver.manage().window().maximize();
+        this.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+        this.driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
+    }
+
     @Given("User navigates to stackoverflow website")
     public void user_navigates_to_stackoverflow_website() {
         System.out.println("Method 1");
