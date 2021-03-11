@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -22,6 +23,14 @@ public class Login {
         this.driver.manage().window().maximize();
         this.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
         this.driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
+    }
+
+    @After
+    public void teardown() throws InterruptedException {
+        Thread.sleep(3000);
+        this.driver.manage().deleteAllCookies();
+        this.driver.quit();
+        this.driver = null;
     }
 
     @Given("User navigates to stackoverflow website")
